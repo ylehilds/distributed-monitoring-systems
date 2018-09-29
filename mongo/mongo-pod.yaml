@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: mongo-pod
+  namespace: mongo
+spec:
+  containers: 
+  - name: mongo-docker
+    image: mongo
+    args: ["-v", "/mongodata:/data", "-p", "27017:30001"]
