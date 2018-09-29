@@ -7,4 +7,4 @@ spec:
   containers: 
   - name: mongo-docker
     image: mongo
-    args: ["-v", "/mongodata:/data", "-p", "27017:30001"]
+    args: ["-v", "/mongodata:/data", "-p", "30001:27017"]
