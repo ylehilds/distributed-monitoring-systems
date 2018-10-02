@@ -1,0 +1,1 @@
+docker restart scraper-docker
