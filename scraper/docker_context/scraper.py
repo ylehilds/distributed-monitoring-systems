@@ -24,7 +24,7 @@ client = MongoClient("192.168.0.1", port=30001)
 db = client.business
 
 # set up processor
-data_processor = DataProcessor()
+data_processor = DataProcessor(logger)
 
 # ip string
 ip = "192.168.35.5"
@@ -42,7 +42,8 @@ while True:
     data = []
     for line in r.text.split("\n"):
         data_point = data_processor.process_line(ip, line)
-        data.append(data_point)
+        if data_point is not None: 
+            data.append(data_point)
 
     logger.info("Placing data in db...")
     db.prometheus.insert_many(data)
