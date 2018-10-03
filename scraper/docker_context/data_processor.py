@@ -1,5 +1,4 @@
 class DataProcessor:
-
     def structured_data_point(self, ip, line, cutting_index):
         data_point = {"computer_ip": ip, "data_type": line[:cutting_index]}
         data_string = line[cutting_index:]
@@ -16,7 +15,7 @@ class DataProcessor:
     def single_value_data_point(self, ip, line):
         data_point = {"computer_ip": ip}
         data = line.split()
-        data_point["data_type": data[0], "value": eval(data[1])]
+        data_point["data_type":data[0], "value":eval(data[1])]
         return data_point
 
     def process_line(self, ip, line):

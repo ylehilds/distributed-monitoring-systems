@@ -31,8 +31,8 @@ ip = "192.168.35.5"
 
 # main loop
 while True:
-    logger.info("Collecting data...") 
-    
+    logger.info("Collecting data...")
+
     try:
         r = requests.get("http://{}:9182/metrics".format(ip))
     except Exception as e:
@@ -44,10 +44,7 @@ while True:
         data_point = data_processor.process_line(ip, line)
         data.append(data_point)
 
-
     logger.info("Placing data in db...")
-    db.prometheus.insert_many(ip: data)
+    db.prometheus.insert_many(data)
     logger.info("Added data!")
     time.sleep(10)
-   
-   
