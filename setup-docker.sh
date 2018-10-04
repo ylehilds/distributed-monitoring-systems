@@ -5,7 +5,7 @@ apt-get remove docker docker-engine docker.io
 
 # set up apt
 apt-get update
-apt-get install \
+apt-get install -y \
 	apt-transport-https \
 	ca-certificates \
 	curl \
@@ -18,7 +18,7 @@ add-apt-repository \
 
 # install docker
 apt-get update
-apt-get install docker-ce
+apt-get install -y docker-ce
 
 # add user to docker sudo group
 groupadd docker
