@@ -1,1 +1,2 @@
-kubectl create -f cockroachdb-statefulset-secure.yaml
+kubectl create -f cockroachdb-statefulset.yaml
+kubectl create -f cluster-init.yaml
