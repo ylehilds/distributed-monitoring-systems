@@ -25,4 +25,4 @@ groupadd docker
 usermod -aG docker $USER
 
 # pull mongo dockerfile
-docker pull mongo
+# docker pull mongo
