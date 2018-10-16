@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
 import time
+import json
 import requests
 import logging
 import click
 from datetime import datetime
 from data_processor import DataProcessor
 
-from __future__ import print_function
 from sqlalchemy import create_engine, Column, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -73,19 +73,23 @@ def main(ip):
 
         metrics_to_add = []
         for data_point in data:
+            logger.info("new point")
             computer_ip = data_point["computer_ip"]
             metric_name = data_point["data_type"]
             metric_value = data_point["value"]
-            del data_point["computer_id"]
+            logger.info("Gathered data")
+            del data_point["computer_ip"]
             del data_point["data_type"]
             del data_point["value"]
+            logger.info("Deleted vals")
             metrics_to_add.append(
                 Metrics(
                     id=str(uuid.uuid4()),
-                    ip=computer_id,
+                    ip=computer_ip,
                     metric_name=metric_name,
                     metric_value=metric_value,
                     labels=json.dumps(data_point)))
+            logger.info("metric appended")
         session = Session()
         session.add_all(metrics_to_add)
         session.commit()

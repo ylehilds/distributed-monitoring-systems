@@ -5,7 +5,7 @@ import requests
 import logging
 from datetime import datetime
 from pymongo import MongoClient
-from data_processor import DataProcessor
+from docker_context.data_processor import DataProcessor
 
 
 def main():
@@ -17,6 +17,7 @@ def main():
     print("In 35: {}".format(db.prometheus["35"].find({}).count()))
     print("In 75: {}".format(db.prometheus["75"].find({}).count()))
     db.prometheus["35"].drop()
+    db.prometheus["65"].drop()
 
 if __name__ == "__main__":
     main()
