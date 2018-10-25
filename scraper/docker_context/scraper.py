@@ -16,7 +16,8 @@ import uuid
 
 @click.command()
 @click.option("--ip", help="ip for prometheus scraping")
-def main(ip):
+@click.option("--database-ip", help="ip for connecting to the database")
+def main(ip, database_ip):
     # set up cockroachdb client
     Base = declarative_base()
 
@@ -29,10 +30,7 @@ def main(ip):
         metric_value = Column(sqltypes.FLOAT)
 
     engine = create_engine(
-        'cockroachdb://root@10.111.24.33:26257/prometheus')
-    #    'cockroachdb://root@10.102.25.106:26257/prometheus')
-    #    'cockroachdb://root@10.111.24.33:26257/prometheus')
-    #    'cockroachdb://root@192.168.99.100:31683/prometheus')
+        'cockroachdb://root@{}:26257/system'.format(database_ip))
     Session = sessionmaker(bind=engine)
     Base.metadata.create_all(engine)
 
