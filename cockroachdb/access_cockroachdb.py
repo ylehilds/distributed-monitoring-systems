@@ -17,7 +17,7 @@ class Metrics(Base):
 
 # Create an engine to communicate` with the database. The "cockroachdb://" prefix
 # for the engine URL indicates that we are connecting to CockroachDB.
-engine = create_engine('cockroachdb://maxroach@192.168.99.100:31997/prometheus')
+engine = create_engine('cockroachdb://root@192.168.99.100:31683/prometheus')
 Session = sessionmaker(bind=engine)
 
 # Automatically create the "accounts" table based on the Account class.
