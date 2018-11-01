@@ -140,6 +140,7 @@ spec:
   - metadata:
       name: datadir
     spec:
+      storageClassName: manual
       accessModes:
         - "ReadWriteOnce"
       resources:

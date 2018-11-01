@@ -1,0 +1,44 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: cockroach-pv-0
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 35Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /cockroachdata/pv-0
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: cockroach-pv-1
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 35Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /cockroachdata/pv-1
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: cockroach-pv-2
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 35Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /cockroachdata/pv-2
