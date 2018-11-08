@@ -7,7 +7,7 @@ import smtplib
 import atexit
 import ssl
 import time 
-
+import os
 # #### VARIABLES #### #
 
 # list of servers to check with the following items in the
@@ -25,7 +25,7 @@ def get_ip():
         s.close()
     return IP
 
-host_ip = get_ip()
+host_ip = os.environ['HOST_IP']
 print(host_ip)
 
 SERVER_LIST = [
@@ -41,7 +41,7 @@ SRV_DOWN = []
 SRV_UP = []
 
 # Email handling items - email addresses
-ADMIN_NOTIFY_LIST = ['mossderek88@gmail.com']
+ADMIN_NOTIFY_LIST = ['mossderek88@gmail.com','lehilds@gmail.com']
 FROM_ADDRESS = 'it515rgryffindor@gmail.com'
 
 # Valid Priorities for Mail
