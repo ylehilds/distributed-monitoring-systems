@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 import smtplib
 import atexit
 import ssl
+import time 
 
 # #### VARIABLES #### #
 
@@ -28,12 +29,12 @@ host_ip = get_ip()
 print(host_ip)
 
 SERVER_LIST = [
-    ('192.168.70.10', 'plain', 80),
-    ('192.168.70.3', 'plain', 80),
-    ('192.168.70.5', 'plain', 80),
+    ('192.168.70.10', 'plain', 1337),
+    ('192.168.70.3', 'plain', 1337),
+    ('192.168.70.5', 'plain', 1337),
     ]
 
-SERVER_LIST.remove((host_ip, 'plain', 80))
+SERVER_LIST.remove((host_ip, 'plain', 1337))
 
 # Globally define these lists as 'empty' for population later.
 SRV_DOWN = []
@@ -172,4 +173,6 @@ def main():
 
 if __name__ == "__main__":
     print("%s  Server Status Checker Running...." % (current_timestamp()))
-    main()
+    while True: 
+        main()
+        time.sleep(300)
