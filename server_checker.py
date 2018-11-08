@@ -11,11 +11,29 @@ import ssl
 
 # list of servers to check with the following items in the
 # definitions per-server: ('hostname', 'ssl or plain', portnumber)
+
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
+
+host_ip = get_ip()
+print(host_ip)
+
 SERVER_LIST = [
     ('192.168.70.10', 'plain', 80),
     ('192.168.70.3', 'plain', 80),
     ('192.168.70.5', 'plain', 80),
     ]
+
+SERVER_LIST.remove((host_ip, 'plain', 80))
 
 # Globally define these lists as 'empty' for population later.
 SRV_DOWN = []
@@ -52,8 +70,8 @@ def send_server_status_report():
         up_str = "Servers online: None!  ***THIS IS REALLY BAD!!!***"
         priority = HIGH
     else:
-        up_str = "Servers online: " + ", ".join(SRV_UP)
-
+        up_str = ""
+        #up_str = "Servers online: " + ", ".join(SRV_UP)
     if len(SRV_DOWN) == 0:
         down_str = "Servers down: None!"
         send_mail = False
