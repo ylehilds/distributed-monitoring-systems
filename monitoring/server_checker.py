@@ -161,6 +161,9 @@ def main():
 
 if __name__ == "__main__":
     print("%s  Server Status Checker Running...." % (current_timestamp()))
-    while True: 
+    while True:
+        # reset these global variables on every run
+        SRV_DOWN = []
+        SRV_UP = []
         main()
         time.sleep(300)
