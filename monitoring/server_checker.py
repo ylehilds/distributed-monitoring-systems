@@ -29,7 +29,7 @@ SRV_DOWN = []
 SRV_UP = []
 
 # Email handling items - email addresses
-ADMIN_NOTIFY_LIST = ['mossderek88@gmail.com','lehilds@gmail.com']
+ADMIN_NOTIFY_LIST = ['mossderek88@gmail.com','lehilds@gmail.com','tyler.etchart@gmail.com','tlund3@gatech.edu','hpanike@gmail.com','danemorgan91@gmail.com']
 FROM_ADDRESS = 'it515rgryffindor@gmail.com'
 
 # Valid Priorities for Mail
