@@ -6,23 +6,30 @@ from email.mime.text import MIMEText
 import smtplib
 import atexit
 import ssl
-
+import time 
+import os
 # #### VARIABLES #### #
 
 # list of servers to check with the following items in the
 # definitions per-server: ('hostname', 'ssl or plain', portnumber)
+
+host_ip = os.environ['HOST_IP']
+print(host_ip)
+
 SERVER_LIST = [
-    ('192.168.70.10', 'plain', 80),
-    ('192.168.70.3', 'plain', 80),
-    ('192.168.70.5', 'plain', 80),
+    ('192.168.70.10', 'plain', 1337),
+    ('192.168.70.3', 'plain', 1337),
+    ('192.168.70.5', 'plain', 1337),
     ]
+
+SERVER_LIST.remove((host_ip, 'plain', 1337))
 
 # Globally define these lists as 'empty' for population later.
 SRV_DOWN = []
 SRV_UP = []
 
 # Email handling items - email addresses
-ADMIN_NOTIFY_LIST = ['mossderek88@gmail.com']
+ADMIN_NOTIFY_LIST = ['mossderek88@gmail.com','lehilds@gmail.com','tyler.etchart@gmail.com','tlund3@gatech.edu','hpanike@gmail.com','danemorgan91@gmail.com']
 FROM_ADDRESS = 'it515rgryffindor@gmail.com'
 
 # Valid Priorities for Mail
@@ -52,8 +59,8 @@ def send_server_status_report():
         up_str = "Servers online: None!  ***THIS IS REALLY BAD!!!***"
         priority = HIGH
     else:
-        up_str = "Servers online: " + ", ".join(SRV_UP)
-
+        up_str = ""
+        #up_str = "Servers online: " + ", ".join(SRV_UP)
     if len(SRV_DOWN) == 0:
         down_str = "Servers down: None!"
         send_mail = False
@@ -154,4 +161,9 @@ def main():
 
 if __name__ == "__main__":
     print("%s  Server Status Checker Running...." % (current_timestamp()))
-    main()
+    while True:
+        # reset these global variables on every run
+        SRV_DOWN = []
+        SRV_UP = []
+        main()
+        time.sleep(300)
