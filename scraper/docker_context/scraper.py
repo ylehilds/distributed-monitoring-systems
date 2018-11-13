@@ -30,7 +30,7 @@ def main(ip, database_ip):
         metric_value = Column(sqltypes.FLOAT)
 
     engine = create_engine(
-        'cockroachdb://root@{}:31047/system'.format(database_ip))
+        'cockroachdb://root@{}:30910/system'.format(database_ip))
     Session = sessionmaker(bind=engine)
     Base.metadata.create_all(engine)
 
