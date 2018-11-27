@@ -15,6 +15,7 @@ import os
 # definitions per-server: ('hostname', 'ssl or plain', portnumber)
 
 host_ip = os.environ['HOST_IP']
+host_username = os.environ['USERNAME']
 print(host_ip)
 
 SERVER_LIST = [
@@ -23,7 +24,7 @@ SERVER_LIST = [
     ('192.168.70.5', 'plain', 1337, 'gryffindor_user_1'),
 ]
 
-SERVER_LIST.remove((host_ip, 'plain', 1337))
+SERVER_LIST.remove((host_ip, 'plain', 1337, host_username))
 
 # Globally define these lists as 'empty' for population later.
 SRV_DOWN = []
