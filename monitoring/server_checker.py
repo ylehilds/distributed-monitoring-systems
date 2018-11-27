@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import socket
+import paramiko
 from datetime import datetime
 from email.mime.text import MIMEText
 import smtplib
@@ -17,10 +18,10 @@ host_ip = os.environ['HOST_IP']
 print(host_ip)
 
 SERVER_LIST = [
-    ('192.168.70.10', 'plain', 1337),
-    ('192.168.70.3', 'plain', 1337),
-    ('192.168.70.5', 'plain', 1337),
-    ]
+    ('192.168.70.10', 'plain', 1337, 'gryffindor_user_3'),
+    ('192.168.70.3', 'plain', 1337, 'gryffindor_user_2'),
+    ('192.168.70.5', 'plain', 1337, 'gryffindor_user_1'),
+]
 
 SERVER_LIST.remove((host_ip, 'plain', 1337))
 
@@ -127,9 +128,9 @@ def send_server_status_report():
 
 
 def main():
-    for (srv, mechanism, port) in sorted(SERVER_LIST):
+    for (srv, mechanism, port, username) in sorted(SERVER_LIST):
         # [ 'serverhost' , 'ssl' or 'plain' ]
-        print(srv, ", ", mechanism, ", ", port)
+        print(srv, ", ", mechanism, ", ", port, ", ", username)
 
         try:
             if mechanism == 'plain':
@@ -154,6 +155,16 @@ def main():
             SRV_DOWN.append(srv)
             exit()
 
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        try:
+            ssh.connect(srv, username=username, password="gryffindor", port=port)
+            print ("%s:  SSH CONNECTED" % (current_timestamp()))
+        except Exception as e:
+            SRV_DOWN.append(srv)
+            print ("%s  %s: DOWN" % (current_timestamp(), srv))
+            continue
+
     send_server_status_report()  # Create email to send the status notices.
 
     exit()  # Exit when done
@@ -166,4 +177,4 @@ if __name__ == "__main__":
         SRV_DOWN = []
         SRV_UP = []
         main()
-        time.sleep(300)
+        time.sleep(180)
