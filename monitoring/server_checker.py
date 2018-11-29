@@ -82,7 +82,7 @@ def send_server_status_report():
 
         # craft msg base
         msg = MIMEText(body)
-        msg['Subject'] = "Server Status Report - %s" % (current_timestamp())
+        msg['Subject'] = "Server Status Report from " + host_ip + "  - %s" % (current_timestamp()) 
         msg['From'] = FROM_ADDRESS
         msg['Sender'] = FROM_ADDRESS  # This is sort of important...
 
