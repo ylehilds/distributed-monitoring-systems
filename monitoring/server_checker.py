@@ -159,7 +159,7 @@ def main():
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         try:
-            ssh.connect(srv, username=username, password="gryffindor", port=port, timeout=10)
+            ssh.connect(srv, username=username, password="gryffindor", port=port, timeout=30)
             print ("%s:  SSH CONNECTED" % (current_timestamp()))
         except Exception as e:
             SRV_DOWN.append(srv)
