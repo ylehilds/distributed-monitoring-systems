@@ -31,7 +31,7 @@ def main(ip, port):
 
     result = engine.execute("select * from metrics limit 10")
     for metric in result:
-        print(metric.ip, metric.metric_name, metric.labels,
+        print(metric.id, metric.ip, metric.metric_name, metric.labels,
               metric.metric_value)
 
 

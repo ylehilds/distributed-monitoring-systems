@@ -25,6 +25,7 @@ def main(ip, database_ip):
         __tablename__ = 'metrics'
         id = Column(sqltypes.VARCHAR, primary_key=True)
         ip = Column(sqltypes.VARCHAR)
+        time = Column(sqltypes.VARCHAR)
         metric_name = Column(sqltypes.VARCHAR)
         labels = Column(sqltypes.JSON)
         metric_value = Column(sqltypes.FLOAT)
@@ -64,6 +65,7 @@ def main(ip, database_ip):
                 Metrics(
                     id=str(uuid.uuid4()),
                     ip=computer_ip,
+                    time=str(datetime.now())
                     metric_name=metric_name,
                     metric_value=metric_value,
                     labels=json.dumps(data_point)))
