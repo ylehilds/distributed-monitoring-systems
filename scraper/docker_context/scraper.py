@@ -65,7 +65,7 @@ def main(ip, database_ip):
                 Metrics(
                     id=str(uuid.uuid4()),
                     ip=computer_ip,
-                    time=str(datetime.now())
+                    time=str(datetime.now()),
                     metric_name=metric_name,
                     metric_value=metric_value,
                     labels=json.dumps(data_point)))
