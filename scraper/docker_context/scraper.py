@@ -40,8 +40,6 @@ def main(ip, database_ip):
     # ip string
     collection = ip.split(".")[2]
 
-    session = Session()
-    
     # main loop
     while True:
         try:
@@ -69,8 +67,12 @@ def main(ip, database_ip):
                     metric_name=metric_name,
                     metric_value=metric_value,
                     labels=json.dumps(data_point)))
+    
+    
+        session = Session() 
         session.add_all(metrics_to_add)
         session.commit()
+        session.close()
 
         time.sleep(60)
 
