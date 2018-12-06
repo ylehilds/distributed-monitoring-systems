@@ -72,7 +72,7 @@ def main(ip, database_ip):
         session.add_all(metrics_to_add)
         session.commit()
 
-        time.sleep(10)
+        time.sleep(60)
 
 
 if __name__ == "__main__":
