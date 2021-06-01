@@ -6,5 +6,5 @@ idna==2.7
 psycopg2==2.7.5
 requests==2.19.1
 SQLAlchemy==1.2.12
-urllib3==1.23
+urllib3==1.26.5
 yapf==0.24.0
