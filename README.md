@@ -52,3 +52,63 @@ This repo includes collectors, scrapers, utilities, and storage backend using Co
 git clone https://github.com/ylehilds/distributed-monitoring-systems.git
 cd distributed-monitoring-systems/monitoring
 pip install -r requirements.txt
+```
+
+### Example Usage
+
+**Check SSH availability**
+~~~bash
+python check_ssh.py --host myserver.com --port 22
+~~~
+
+**Monitor logins**
+~~~bash
+python monitor_logins.py
+~~~
+
+**Run all scrapers (example)**
+~~~bash
+python -m scraper.run_all
+~~~
+
+> Tip: Many scripts support `--help` for parameters and usage.
+
+## 📂 Project Structure
+~~~
+.
+├── check_ssh.py            # SSH monitoring script
+├── monitor_logins.py       # Login monitoring script
+├── monitoring/             # Core monitoring framework
+├── scraper/                # Scraper modules
+├── mongo/                  # MongoDB integration (optional)
+├── cockroachdb/            # CockroachDB integration (optional)
+├── data_science/           # Data exploration & analysis
+├── util/                   # Shared helpers
+├── misc/                   # Miscellaneous scripts
+├── requirements.txt        # Current dependency list (paramiko)
+├── LICENSE
+└── README.md
+~~~
+
+## 🔭 Potential Use Cases
+- Infrastructure uptime monitoring (via SSH and service checks)  
+- Security auditing (login tracking and anomaly detection)  
+- Data collection pipelines for distributed systems  
+- Exploratory data analysis of service performance and usage trends  
+
+## 🧭 Roadmap
+- CockroachDB schema + ingestion (`sqlalchemy`/`psycopg2`)
+- Alerting/notifications (SNS/Slack webhooks)
+- Dashboarding (Streamlit/Grafana)
+
+## TODO: 🧪 Testing
+- Add unit tests for collectors and parsers (e.g., `pytest`)
+- Mock network and DB layers for deterministic CI runs
+
+## 📜 License
+This project is licensed under the **Apache 2.0 License** — see [`LICENSE`](LICENSE) for details.
+
+## 👤 Author
+**Lehi Alcantara**  
+🌐 https://www.lehi.dev  
+✉️ lehi@lehi.dev
